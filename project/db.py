@@ -5,7 +5,6 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import Column, Integer, String, Date
 
 
-
 Base = declarative_base()
 database_name = 'compounds.db'
 DATABASE_URI = 'sqlite:///' + database_name
@@ -14,7 +13,8 @@ engine = create_engine(DATABASE_URI)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
-class compound(Base):
+
+class Compound(Base):
     __tablename__ = 'compounds'
     id = Column(Integer, primary_key=True)
     compound = Column(String)
@@ -35,5 +35,6 @@ class compound(Base):
         self.cross_links_count = cross_links_count
     
     def __repr__(self):
-        return "<Compound(compound='{}', name='{}', formula='{}', inchi='{}', inchi_key='{}', smiles='{}', cross_links_count={})>"\
+        return "<Compound(compound='{}', name='{}', formula='{}', inchi='{}', " \
+               "inchi_key='{}', smiles='{}', л={})>"\
                 .format(self.conpound, self.name, self.formula, self.inchi, self.inchi, self.inchi_key, self.smiles, self.cross_links_count)
